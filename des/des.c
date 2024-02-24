@@ -54,7 +54,7 @@ int main(int argc, char* argv[]){
 
     }
     unsigned long key = strtol(binKey, NULL, 2);
-    printf("cipher: %lx\nkey: %lx\n", cipher, key);
+    printf("cipher: %lx\nkey: %lx\n\n", cipher, key);
     
     Key* k = (Key*)malloc(sizeof(Key));
     k->shortKey = 0;
@@ -185,10 +185,13 @@ int main(int argc, char* argv[]){
             tempRight = tempRight | ( ( ( (msgRight >> (32 - funcPermute[i])) & 0x01 ) ) << (31 - i) );
         }
         msgRight = tempRight;
+        printf("f output: %x\n", msgRight);
         
 
         msgRight = msgLeft ^ msgRight;
         msgLeft = oMsgRight;
+
+        printf("Round %d: left: %x right: %x\n\n", (16-subKeyNum), msgLeft, msgRight);
         
 
     }
